@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 export const ProjectSchema = new Schema(
     {
-        title: { type: String, required: true },
+        name: { type: String, required: true },
         description: { type: String, required: true },
         creatorId: { type: Schema.Types.ObjectId, ref: 'Profile', required: true }
     },
