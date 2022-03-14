@@ -7,20 +7,31 @@ export class ProjectsController extends BaseController {
         super('api/projects')
         this.router
             .get('', this.getProjects)
-            .get('/:id', this.getProjectsById)
+            .post('', this.createProject)
+        // .get('/:id', this.getProjectsById)
     }
     async getProjects(req, res, next) {
         try {
-            const projects = await projectsService.getProjects()
+            const projects = await projectsService.getProjects(req)
             res.send(projects)
         } catch (error) {
             next(error)
         }
     }
-    async getProjectsById(req, res, next) {
+    async getProjectById(req, res, next) {
         try {
-            const projects = await projectsService.getProjectsById(req.params.id)
-            res.send(projects)
+            const project = await projectsService.getProjectById(req.params.id)
+            res.send(project)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async createProject(req, res, next) {
+        try {
+            req.body.creatorId = req.userInfo.id
+            const project = await projectsService.createProject(req.body)
+            res.send(project)
         } catch (error) {
             next(error)
         }
