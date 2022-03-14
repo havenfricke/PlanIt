@@ -1,36 +1,39 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+      <div
+        class="
+          d-flex
+          align-items-center
+          justify-content-center
+          flex-column
+          align-items-center
+        "
+      >
         <img
+          class="rounded-circle hoverable"
           alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
+          src="https://64.media.tumblr.com/27a5d0a155ec89fccd6dfae0167f93c2/tumblr_pd0uiulnGI1rqnly5_500.gifv"
+          height="50"
+          label="home"
         />
       </div>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+    <b class="fs-3">PlanIt</b>
+    <div
+      class="d-flex justify-content-end collapse navbar-collapse"
+      id="navbarText"
     >
-      <span class="navbar-toggler-icon" />
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-      </ul>
-      <span class="navbar-text">
+      <span class="navbar-text mx-0">
         <button
-          class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
+          class="
+            btn
+            selectable
+            text-success
+            lighten-30
+            text-uppercase
+            my-2 my-lg-0
+          "
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -48,7 +51,7 @@
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-circle"
             />
             <span class="mx-3 text-success lighten-30">{{ user.name }}</span>
           </div>
@@ -62,7 +65,11 @@
               </div>
             </router-link>
             <div
-              class="list-group-item list-group-item-action hoverable text-danger"
+              class="
+                list-group-item list-group-item-action
+                hoverable
+                text-danger
+              "
               @click="logout"
             >
               <i class="mdi mdi-logout"></i>
@@ -110,10 +117,10 @@ export default {
 a:hover {
   text-decoration: none;
 }
-.nav-link{
+.nav-link {
   text-transform: uppercase;
 }
-.navbar-nav .router-link-exact-active{
+.navbar-nav .router-link-exact-active {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
