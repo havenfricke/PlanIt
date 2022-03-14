@@ -1,8 +1,22 @@
 <template>
   <div class="container-fluid">
-    <div class="row p-5">
-      <div class="bg-light shadow rounded">
-        <b>Projects</b>
+    <div class="row p-5 mx-2">
+      <div class="col-12">
+        <div
+          class="bg-light row d-flex justify-content-around p-5 shadow rounded"
+        >
+          <b class="fs-3 col-8">Projects</b>
+          <button class="col-2 btn btn-success">Create Project</button>
+
+          <div class="row d-flex justify-content-around p-2">
+            <div class="p-3 col-5 text-center btn btn-secondary rounded">
+              Project 1
+            </div>
+            <div class="p-3 col-5 text-center btn btn-secondary rounded">
+              Project 2
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
