@@ -7,7 +7,7 @@ class ProjectsService {
         const projects = dbContext.Projects.find()
         return projects
     }
-    async getProjectsById() {
+    async getProjectsById(id) {
 
     }
 }
