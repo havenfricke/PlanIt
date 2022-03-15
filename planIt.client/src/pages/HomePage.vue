@@ -35,7 +35,12 @@
                   />
                 </div>
                 <div class="d-flex justify-content-end">
-                  <button type="button" class="btn btn-success">
+                  <button
+                    @click="goTo('Projects')"
+                    type="button"
+                    class="btn btn-success"
+                    data-bs-dismiss="modal"
+                  >
                     Create Project
                   </button>
                 </div>
@@ -59,13 +64,21 @@
 <script>
 import { computed } from "@vue/reactivity"
 import { AppState } from "../AppState"
+import { useRouter } from "vue-router"
 
 
 export default {
   name: 'Home',
   setup() {
+    const router = useRouter();
     return {
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      goTo(page) {
+        router.push({
+          name: page,
+          params: { id: 123 }
+        });
+      },
     }
   }
 }
