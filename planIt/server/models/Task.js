@@ -8,7 +8,6 @@ export const TaskSchema = new Schema(
         sprintId: { type: Schema.Types.ObjectId, ref: 'Sprint', required: true },
         projectId: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
         creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
-        // creator: { type: String, required: true }
     },
     { timestamps: true, toJSON: { virtuals: true } }
 )
@@ -25,11 +24,4 @@ TaskSchema.virtual('sprint', {
     foreignField: '_id',
     justOne: true,
     ref: 'Sprint'
-})
-
-TaskSchema.virtual('project', {
-    localField: 'projectId',
-    foreignField: '_id',
-    justOne: true,
-    ref: 'Project'
 })
