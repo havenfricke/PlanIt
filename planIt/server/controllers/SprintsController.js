@@ -13,6 +13,7 @@ export class SprintsController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('/:id/sprints', this.createSprint)
             .get('/:id/sprints', this.getSprintsByProject)
+            .delete('/:id/sprints/:id', this.deleteSprint)
     }
 
     async createSprint(req, res, next) {
@@ -34,7 +35,15 @@ export class SprintsController extends BaseController {
         } catch (error) {
             next(error)
         }
+    }
 
+    async deleteSprint(req, res, next) {
+        try {
+            const doomed = await sprintsService.deleteSprint(req.params.id, req.userInfo.id)
+            res.send(doomed)
+        } catch (error) {
+            next(error)
+        }
     }
 
 }
