@@ -49,11 +49,11 @@
           </Modal>
 
           <div class="row p-5">
-            <!--NOTE v-for on div below-->
+            <!--v-for here-->
             <div class="col-12 d-flex justify-content-center">
               <ProjectBanner />
             </div>
-            <!--NOTE v-for on div above-->
+            <!--v-for here-->
           </div>
         </div>
       </div>
