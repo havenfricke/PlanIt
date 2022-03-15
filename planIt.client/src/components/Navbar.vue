@@ -16,6 +16,7 @@
           src="https://24.media.tumblr.com/f174bf55f62a80d3efe725d248a9d503/tumblr_mvd7dpipMO1s60oo7o1_500.gif"
           height="50"
           label="home"
+          title="home"
         />
       </div>
     </router-link>
