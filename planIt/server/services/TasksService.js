@@ -28,6 +28,27 @@ class TasksService {
         return "Task Delorted"
     }
 
+    async editTask(updated, userId) {
+        const task = await dbContext.Tasks.findById(updated.id)
+        if (task.creatorId.toString() !== userId) {
+            throw new Forbidden("You cannot edit this")
+        }
+
+        if (updated.name != undefined) { task.name = updated.name }
+        if (updated.weight != undefined) { task.weight = updated.weight }
+        if (updated.sprintId != undefined) { task.sprintId = updated.sprintId }
+        if (updated.isComplete != undefined) { task.isComplete = updated.isComplete }
+
+        // task.name = updated.name ? updated.name : task.name
+        // task.weight = updated.weight ? updated.weight : task.weight
+        // task.sprintId = updated.sprintId ? updated.sprintId : task.sprintId
+        // task.isComplete = updated.isComplete ? updated.isComplete : task.isComplete
+
+        task.save()
+        // task.populate('sprint').populate('creator')
+        return task
+    }
+
 }
 
 export const tasksService = new TasksService()
