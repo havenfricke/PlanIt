@@ -1,6 +1,12 @@
 <template>
   <div class="container-fluid">
-    <div class="row p-5 mx-2">
+    <div v-if="!user.isAuthenticated" class="row p-5">
+      <div class="col-12 rounded shdaow bg-light">
+        <h1 class="text-center m-5">Welcome!</h1>
+        <p class="text-center mb-5">Please log in or register to use PlanIt.</p>
+      </div>
+    </div>
+    <div v-if="user.isAuthenticated" class="row p-5 mx-2">
       <div class="col-12">
         <div
           class="bg-light row d-flex justify-content-around p-5 shadow rounded"
@@ -40,20 +46,7 @@
           <div class="row p-5">
             <!--NOTE v-for on div below-->
             <div class="col-12 d-flex justify-content-center">
-              <p
-                type="button"
-                class="
-                  p-2
-                  hoverable
-                  fs-5
-                  col-8
-                  text-center
-                  btn btn-primary
-                  rounded
-                "
-              >
-                Project Name
-              </p>
+              <ProjectBanner />
             </div>
             <!--NOTE v-for on div above-->
           </div>
@@ -64,12 +57,15 @@
 </template>
 
 <script>
+import { computed } from "@vue/reactivity"
+import { AppState } from "../AppState"
 
 
 export default {
   name: 'Home',
   setup() {
     return {
+      user: computed(() => AppState.user)
     }
   }
 }
