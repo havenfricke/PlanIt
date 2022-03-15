@@ -31,8 +31,13 @@
     </template>
     <template #body>
       <form>
-        <input type="text" />
-        <input type="text" />
+        <div class="row">
+          <div class="col-8">
+            <input type="text" placeholder="edit task name" />
+          </div>
+
+          <input class="col-2" type="text" />
+        </div>
         <div class="dropdown mt-3">
           <button
             class="btn btn-secondary dropdown-toggle"
