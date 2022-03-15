@@ -37,20 +37,20 @@
       <template #title>Add a task</template>
       <template #body>
         <form @submit="functionHere" class="row">
-          <div class="p-2 d-flex justify-content-around">
+          <div class="p-2 d-flex justify-content-around align-items-center">
             <input
               class="col-8 p-2 rounded"
               type="text"
               placeholder="Task name"
             />
-            <i class="col-2 text-end fs-3 mdi mdi-anvil"> </i>
+            <i class="col-2 text-end fs-3 mdi-anvil"> </i>
             <input
               class="col-2 p-2 rounded"
               type="number"
               placeholder="weight"
             />
           </div>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end align-items-center">
             <button
               type="button"
               class="btn btn-success"

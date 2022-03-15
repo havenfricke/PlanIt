@@ -51,7 +51,15 @@
               </form>
             </template>
           </Modal>
-          <i class="mdi fs-5 col-12 text-end mdi-delete"> Delete Project</i>
+          <div class="row d-flex justify-content-start">
+            <div class="col-3">
+              <i
+                title="delete project"
+                class="mdi fs-5 col-2 hoverable text-end mdi-delete"
+              >
+              </i>
+            </div>
+          </div>
         </div>
         <Modal id="settingsModal">
           <template #title>Edit Project</template>
