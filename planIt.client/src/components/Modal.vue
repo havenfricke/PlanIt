@@ -22,11 +22,6 @@
 
         <div class="modal-body">
           <slot name="body"><!--body slot--></slot>
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-success text-end">
-              Create Project
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -129,12 +129,12 @@ a:hover {
 }
 
 .hoverable:hover {
-  transform: scale(1.04);
+  transform: scale(1.07);
   box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.3);
-  transition: 10ms ease-in-out;
+  transition: 50ms ease-in-out;
 }
 .hoverable:active {
   transform: scale(0.98);
-  transition: 10ms ease-in-out;
+  transition: 50ms ease-in-out;
 }
 </style>

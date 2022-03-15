@@ -20,27 +20,42 @@
           <Modal id="myModal">
             <template #title>Create a Project</template>
             <template #body>
-              <form class="row">
+              <form @submit="functionHere" class="row">
                 <div class="p-2">
                   <input
-                    class="col-12 rounded"
+                    class="col-12 p-2 rounded"
                     type="text"
                     placeholder="Project name"
                   />
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="btn btn-success">
+                    Create Project
+                  </button>
                 </div>
               </form>
             </template>
           </Modal>
 
           <div class="row p-5">
+            <!--NOTE v-for on div below-->
             <div class="col-12 d-flex justify-content-center">
               <p
                 type="button"
-                class="p-2 hoverable col-6 text-center btn btn-primary rounded"
+                class="
+                  p-2
+                  hoverable
+                  fs-5
+                  col-8
+                  text-center
+                  btn btn-primary
+                  rounded
+                "
               >
-                Project 1
+                Project Name
               </p>
             </div>
+            <!--NOTE v-for on div above-->
           </div>
         </div>
       </div>
@@ -49,8 +64,14 @@
 </template>
 
 <script>
+
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    return {
+    }
+  }
 }
 </script>
 
@@ -75,10 +96,10 @@ export default {
 .hoverable:hover {
   transform: scale(1.01);
   box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.3);
-  transition: 10ms ease-in-out;
+  transition: 50ms ease-in-out;
 }
 .hoverable:active {
   transform: scale(0.98);
-  transition: 10ms ease-in-out;
+  transition: 50ms ease-in-out;
 }
 </style>
