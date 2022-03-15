@@ -1,5 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider"
 import { dbContext } from "../db/DbContext"
+import { notesService } from "../services/NotesService"
 import { tasksService } from "../services/TasksService"
 import BaseController from "../utils/BaseController"
 
@@ -38,7 +39,13 @@ export class TasksController extends BaseController {
     }
 
     async editTask(req, res, next) {
-        // NOTE STILL NEED TO DO THIS
+        try {
+            req.body.id = req.params.id
+            const task = await tasksService.editTask(req.body, req.userInfo.id)
+            return res.send(task)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async deleteTask(req, res, next) {
