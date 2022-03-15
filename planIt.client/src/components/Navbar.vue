@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div
         class="
@@ -13,13 +13,15 @@
         <img
           class="rounded-circle hoverable"
           alt="logo"
-          src="https://64.media.tumblr.com/27a5d0a155ec89fccd6dfae0167f93c2/tumblr_pd0uiulnGI1rqnly5_500.gifv"
+          src="https://24.media.tumblr.com/f174bf55f62a80d3efe725d248a9d503/tumblr_mvd7dpipMO1s60oo7o1_500.gif"
           height="50"
           label="home"
         />
       </div>
     </router-link>
-    <b class="fs-3">PlanIt</b>
+    <b class="fs-3 text-light">
+      <a class="text-light" href="#">PlanIt</a>
+    </b>
     <div
       class="d-flex justify-content-end collapse navbar-collapse"
       id="navbarText"
@@ -124,5 +126,15 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.hoverable:hover {
+  transform: scale(1.04);
+  box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.3);
+  transition: 10ms ease-in-out;
+}
+.hoverable:active {
+  transform: scale(0.98);
+  transition: 10ms ease-in-out;
 }
 </style>

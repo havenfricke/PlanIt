@@ -5,15 +5,41 @@
         <div
           class="bg-light row d-flex justify-content-around p-5 shadow rounded"
         >
-          <b class="fs-3 col-8">Projects</b>
-          <button class="col-2 btn btn-success">Create Project</button>
+          <b class="fs-3 border-bottom border-primary text-primary col-8"
+            >Projects</b
+          >
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            class="col-2 hoverable btn btn-success"
+          >
+            Create Project
+          </button>
 
-          <div class="row d-flex justify-content-around p-2">
-            <div class="p-3 col-5 text-center btn btn-secondary rounded">
-              Project 1
-            </div>
-            <div class="p-3 col-5 text-center btn btn-secondary rounded">
-              Project 2
+          <Modal id="myModal">
+            <template #title>Create a Project</template>
+            <template #body>
+              <form class="row">
+                <div class="p-2">
+                  <input
+                    class="col-12 rounded"
+                    type="text"
+                    placeholder="Project name"
+                  />
+                </div>
+              </form>
+            </template>
+          </Modal>
+
+          <div class="row p-5">
+            <div class="col-12 d-flex justify-content-center">
+              <p
+                type="button"
+                class="p-2 hoverable col-6 text-center btn btn-primary rounded"
+              >
+                Project 1
+              </p>
             </div>
           </div>
         </div>
@@ -45,5 +71,14 @@ export default {
       object-position: center;
     }
   }
+}
+.hoverable:hover {
+  transform: scale(1.01);
+  box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.3);
+  transition: 10ms ease-in-out;
+}
+.hoverable:active {
+  transform: scale(0.98);
+  transition: 10ms ease-in-out;
 }
 </style>

@@ -1,0 +1,43 @@
+<template>
+  <div
+    class="modal fade"
+    id="myModal"
+    tabindex="-1"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">
+            <slot name="title"><!--title slot--></slot>
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <slot name="body"><!--body slot--></slot>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-success text-end">
+              Create Project
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+</style>
