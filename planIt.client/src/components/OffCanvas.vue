@@ -1,5 +1,9 @@
 <template>
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvas">
+  <div
+    class="offcanvas offcanvas-start bg-secondary"
+    tabindex="-1"
+    id="offCanvas"
+  >
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offCanvasLabel">
         <slot name="title"><!--title slot--></slot>

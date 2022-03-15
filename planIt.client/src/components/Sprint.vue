@@ -43,12 +43,8 @@
               type="text"
               placeholder="Task name"
             />
-            <i class="col-2 text-end fs-3 mdi-anvil"> </i>
-            <input
-              class="col-2 p-2 rounded"
-              type="number"
-              placeholder="weight"
-            />
+            <i class="col-2 text-end fs-3 mdi mdi-anvil"> </i>
+            <input class="col-2 p-2 rounded" type="number" placeholder="1" />
           </div>
           <div class="d-flex justify-content-end align-items-center">
             <button

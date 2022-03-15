@@ -55,7 +55,7 @@
             <div class="col-3">
               <i
                 title="delete project"
-                class="mdi fs-5 col-2 hoverable text-end mdi-delete"
+                class="mdi fs-3 col-2 hoverable text-end mdi-delete"
               >
               </i>
             </div>
@@ -126,6 +126,7 @@ export default {
   transform: scale(1.09);
   filter: drop-shadow(0px 15px 10px rgba(0, 0, 0, 0.3));
   transition: 50ms ease-in-out;
+  cursor: pointer;
 }
 .hoverable:active {
   transform: scale(0.98);

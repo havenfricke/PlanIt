@@ -17,8 +17,14 @@
     <i
       data-bs-toggle="offcanvas"
       data-bs-target="#offCanvas"
+      title="view task notes"
+      class="col-1 hoverable text-end mdi mdi-text"
+    ></i>
+    <i
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offCanvas"
       title="edit task"
-      class="col-1 hoverable text-end mdi mdi-cog"
+      class="col-1 hoverable text-center mdi mdi-cog"
     ></i>
     <i
       title="delete task"
@@ -27,32 +33,39 @@
   </div>
   <OffCanvas>
     <template #title>
-      <h1>Edit Task</h1>
+      <h1 class="row">Edit Task</h1>
     </template>
     <template #body>
       <form>
         <div class="row">
-          <div class="col-8">
-            <input type="text" placeholder="edit task name" />
-          </div>
+          <input
+            type="text"
+            class="col-8 rounded"
+            placeholder="Edit task name"
+          />
 
-          <input class="col-2" type="text" />
+          <i class="col-2 text-end fs-4 mdi mdi-anvil"> </i>
+          <input class="col-2 rounded" type="text" />
         </div>
-        <div class="dropdown mt-3">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-bs-toggle="dropdown"
-          >
-            Task Options
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+
+        <div class="row p-3">
+          <div class="col-12 p-2">
+            <span class="col-2">Move task to: </span>
+            <div class="row">
+              <!--v-for here-->
+              <select class="col-12 fs-5 rounded">
+                <DropDown />
+              </select>
+              <!--v-for here-->
+            </div>
+          </div>
         </div>
+        <div class="row d-flex justify-content-end p-3">
+          <button class="col-4 rounded btn-primary">Save</button>
+        </div>
+      </form>
+      <form action="">
+        <div>Add Notes</div>
       </form>
     </template>
   </OffCanvas>
