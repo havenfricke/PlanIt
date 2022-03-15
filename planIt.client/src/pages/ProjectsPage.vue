@@ -23,7 +23,11 @@
           >
             Add Sprint
           </button>
-
+          <!--v-for here-->
+          <div>
+            <Sprint />
+          </div>
+          <!--v-for here-->
           <Modal id="myModal">
             <template #title>Create Sprint</template>
             <template #body>
@@ -47,16 +51,17 @@
               </form>
             </template>
           </Modal>
+          <i class="mdi fs-5 col-12 text-end mdi-delete"> Delete Project</i>
         </div>
         <Modal id="settingsModal">
-          <template #title>Create Sprint</template>
+          <template #title>Edit Project</template>
           <template #body>
             <form @submit="functionHere" class="row">
               <div class="p-2">
                 <input
                   class="col-12 p-2 rounded"
                   type="text"
-                  placeholder="Sprint Name"
+                  placeholder="Project Name"
                 />
               </div>
               <div class="d-flex justify-content-end">
@@ -65,7 +70,30 @@
                   class="btn btn-success"
                   data-bs-dismiss="modal"
                 >
-                  Create Sprint
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </template>
+        </Modal>
+        <Modal id="settingsModal">
+          <template #title>Edit Project</template>
+          <template #body>
+            <form @submit="functionHere" class="row">
+              <div class="p-2">
+                <input
+                  class="col-12 p-2 rounded"
+                  type="text"
+                  placeholder="Project Name"
+                />
+              </div>
+              <div class="d-flex justify-content-end">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-bs-dismiss="modal"
+                >
+                  Save Changes
                 </button>
               </div>
             </form>
