@@ -39,11 +39,6 @@ class TasksService {
         if (updated.sprintId != undefined) { task.sprintId = updated.sprintId }
         if (updated.isComplete != undefined) { task.isComplete = updated.isComplete }
 
-        // task.name = updated.name ? updated.name : task.name
-        // task.weight = updated.weight ? updated.weight : task.weight
-        // task.sprintId = updated.sprintId ? updated.sprintId : task.sprintId
-        // task.isComplete = updated.isComplete ? updated.isComplete : task.isComplete
-
         task.save()
         // task.populate('sprint').populate('creator')
         return task
