@@ -53,11 +53,13 @@
           </Modal>
           <div class="row d-flex justify-content-start">
             <div class="col-3">
-              <i
-                title="delete project"
-                class="mdi fs-3 col-2 hoverable text-end mdi-delete"
-              >
-              </i>
+              <button class="rounded-circle">
+                <i
+                  title="delete project"
+                  class="mdi fs-3 col-2 hoverable text-end mdi-delete"
+                >
+                </i>
+              </button>
             </div>
           </div>
         </div>
