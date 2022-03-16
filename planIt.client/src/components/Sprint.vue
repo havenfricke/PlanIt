@@ -35,6 +35,7 @@
     </div>
     <Modal id="taskModal">
       <template #title>Add a task</template>
+
       <template #body>
         <form @submit="functionHere" class="row">
           <div class="p-2 d-flex justify-content-around align-items-center">
