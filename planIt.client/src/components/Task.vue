@@ -10,10 +10,11 @@
     "
   >
     <div class="col-6 p-3">
-      <input type="checkbox" />
-      Task Name
+      <!--TODO checkbox-->
+      <input v-model="editable.isComplete" @change="editTask" type="checkbox" />
+      {{ task.name }}
     </div>
-    <i class="mdi mdi-anvil col-2 text-align"> 6</i>
+    <i class="mdi mdi-anvil col-2 text-align"> {{ task.weight }}</i>
     <i
       data-bs-toggle="modal"
       data-bs-target="#notesModal"
@@ -27,6 +28,7 @@
       class="col-1 hoverable text-center mdi mdi-cog"
     ></i>
     <i
+      @click="deleteTask"
       title="delete task"
       class="col-1 hoverable text-start mdi mdi-delete"
     ></i>
@@ -36,16 +38,22 @@
       <h1 class="row">Edit Task</h1>
     </template>
     <template #body>
-      <form>
+      <form @submit.prevent="editTask">
         <div class="row p-3">
           <input
+            v-model="editable.name"
             type="text"
             class="col-8 rounded"
             placeholder="Edit task name"
           />
 
           <i class="col-2 text-end fs-4 mdi mdi-anvil"> </i>
-          <input class="col-2 rounded" type="number" placeholder="1" />
+          <input
+            v-model="editable.weight"
+            class="col-2 rounded"
+            type="number"
+            placeholder="1"
+          />
         </div>
 
         <div class="row p-3">
@@ -61,14 +69,16 @@
           </div>
         </div>
         <div class="row d-flex justify-content-end p-3">
-          <button class="col-4 rounded btn-primary">Save</button>
+          <button @click="editTask" class="col-4 rounded btn-primary">
+            Save
+          </button>
         </div>
       </form>
     </template>
   </OffCanvas>
   <Modal id="notesModal">
     <template #title>
-      <div>Task Name</div>
+      <div>{{ task.name }}</div>
     </template>
     <template #body>
       <ul>
@@ -92,9 +102,43 @@
 </template>
 
 <script>
+import { computed, ref } from "@vue/reactivity";
+import { useRoute } from "vue-router";
+import { tasksService } from "../services/TasksService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { AppState } from "../AppState";
 export default {
-  setup() {
-    return {}
+  props: {
+    task: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    const editable = ref({});
+    const route = useRoute();
+    return {
+      editable,
+      async deleteTask() {
+        try {
+          if (await Pop.confirm()) {
+            await tasksService.deleteTask(route.params.id, props.task.id)
+          }
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async editTask() {
+        try {
+
+          await tasksService.editTask(route.params.id, props.task.id, editable.value)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      tasks: computed(() => AppState.tasks)
+    }
   }
 }
 </script>

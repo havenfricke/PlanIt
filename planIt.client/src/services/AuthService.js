@@ -6,6 +6,7 @@ import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { projectsService } from "./ProjectsService"
 import { socketService } from './SocketService'
+import { sprintsService } from "./SprintsService"
 
 export const AuthService = initialize({
   domain,
@@ -28,6 +29,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
   await projectsService.getAllProjects()
+  // await sprintsService.getSprints()
 })
 
 async function refreshAuthToken(config) {

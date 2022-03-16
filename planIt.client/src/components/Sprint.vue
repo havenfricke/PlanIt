@@ -13,7 +13,7 @@
         "
       >
         <h4 class="mx-3 col-8 text-light">
-          Sprint Name
+          {{ sprint.name }}
           <b><i class="mdi mdi-anvil text-end col-2 text-align"> 6</i></b>
         </h4>
         <button
@@ -23,13 +23,19 @@
         >
           + Task
         </button>
+        <div class="col-12 d-flex justify-content-end">
+          <i
+            @click="deleteSprint"
+            class="mdi mx-3 hoverable mdi-delete text-light fs-2"
+          ></i>
+        </div>
         <p class="col-12 text-end mt-3 text-light">
           <b>0/1 Tasks Completed </b>
         </p>
       </div>
       <!--v-for here-->
-      <div>
-        <Task />
+      <div v-for="t in tasks" :key="t.id">
+        <Task :task="t" />
       </div>
       <!--v-for here-->
     </div>
@@ -37,18 +43,29 @@
       <template #title>Add a task</template>
 
       <template #body>
-        <form @submit="functionHere" class="row">
+        <form @submit="createTask" class="row">
           <div class="p-2 d-flex justify-content-around align-items-center">
             <input
+              required
+              v-model="editable.name"
               class="col-8 p-2 rounded"
               type="text"
               placeholder="Task name"
             />
             <i class="col-2 text-end fs-3 mdi mdi-anvil"> </i>
-            <input class="col-2 p-2 rounded" type="number" placeholder="1" />
+            <input
+              required
+              v-model="editable.weight"
+              class="col-2 p-2 rounded"
+              type="number"
+              placeholder="1"
+              min="1"
+              max="10"
+            />
           </div>
           <div class="d-flex justify-content-end align-items-center">
             <button
+              @click="createTask(sprint.id)"
               type="button"
               class="btn btn-success"
               data-bs-dismiss="modal"
@@ -63,7 +80,57 @@
 </template>
 
 <script>
+import { computed, ref } from "@vue/reactivity"
+import { AppState } from "../AppState"
+import { sprintsService } from "../services/SprintsService"
+import { useRoute } from "vue-router"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { onMounted, watchEffect } from "@vue/runtime-core"
+import { tasksService } from "../services/TasksService"
 export default {
+  props: {
+    sprint: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    const route = useRoute();
+    const editable = ref({
+      sprintId: props.sprint.id
+    });
+    onMounted(async () => {
+      try {
+        await tasksService.getTasks(route.params.id)
+      } catch (error) {
+        logger.log(error)
+      }
+    });
+    return {
+      editable,
+      async createTask(sprintId) {
+        try {
+          editable.sprintId = sprintId
+          await tasksService.createTask(route.params.id, editable.value)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+
+      async deleteSprint() {
+        try {
+          if (await Pop.confirm()) {
+            await sprintsService.deleteSprint(route.params.id, props.sprint.id)
+          }
+        } catch (error) {
+          logger.log(error)
+
+        }
+      },
+      tasks: computed(() => AppState.tasks),
+    }
+  }
 
 }
 </script>

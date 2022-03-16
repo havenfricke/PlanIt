@@ -21,19 +21,20 @@
             data-bs-target="#myModal"
             class="col-2 hoverable btn btn-success"
           >
-            Add Sprint
+            + Sprint
           </button>
           <!--v-for here-->
-          <div>
-            <Sprint />
+          <div v-for="s in sprints" :key="s.id">
+            <Sprint :sprint="s" />
           </div>
           <!--v-for here-->
           <Modal id="myModal">
             <template #title>Create Sprint</template>
             <template #body>
-              <form @submit="functionHere" class="row">
+              <form @submit.prevent="createSprint" class="row">
                 <div class="p-2">
                   <input
+                    v-model="editable.name"
                     class="col-12 p-2 rounded"
                     type="text"
                     placeholder="Sprint Name"
@@ -41,6 +42,7 @@
                 </div>
                 <div class="d-flex justify-content-end">
                   <button
+                    @click="createSprint"
                     type="button"
                     class="btn btn-success"
                     data-bs-dismiss="modal"
@@ -52,7 +54,7 @@
             </template>
           </Modal>
           <div class="row d-flex justify-content-start">
-            <div class="col-3">
+            <div class="col-3 p-2">
               <button class="rounded-circle btn-secondary">
                 <i
                   title="delete project"
@@ -115,20 +117,47 @@
 </template>
 
 <script>
-import { computed, onMounted } from "@vue/runtime-core"
+import { computed, onMounted, ref, watchEffect } from "@vue/runtime-core"
 import { projectsService } from "../services/ProjectsService"
 import { useRoute } from "vue-router"
 import { AppState } from "../AppState"
+import { sprintsService } from "../services/SprintsService"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+
 export default {
   name: 'Projects',
   setup() {
+    const editable = ref({});
     const route = useRoute();
     onMounted(async () => {
-      await projectsService.getProjectById(route.params.id)
+      try {
+        await projectsService.getProjectById(route.params.id)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message)
+      }
+      try {
+        await sprintsService.getSprints(route.params.id)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message)
+      }
     })
+
     return {
+      editable,
+      async createSprint() {
+        try {
+          await sprintsService.createSprint(route.params.id, editable.value)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
+
+      },
       project: computed(() => AppState.projects),
-      sprint: computed(() => AppState.sprints)
+      sprints: computed(() => AppState.sprints)
     }
   }
 }
