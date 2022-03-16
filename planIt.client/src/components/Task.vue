@@ -37,7 +37,7 @@
     </template>
     <template #body>
       <form>
-        <div class="row">
+        <div class="row p-3">
           <input
             type="text"
             class="col-8 rounded"
