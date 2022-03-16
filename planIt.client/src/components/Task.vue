@@ -16,7 +16,7 @@
     <i class="mdi mdi-anvil col-2 text-align"> 6</i>
     <i
       data-bs-toggle="modal"
-      data-bs-target="#myModal"
+      data-bs-target="#notesModal"
       title="view task notes"
       class="col-1 hoverable text-end mdi mdi-text"
     ></i>
@@ -66,7 +66,7 @@
       </form>
     </template>
   </OffCanvas>
-  <Modal id="myModal">
+  <Modal id="notesModal">
     <template #title>
       <div>Task Name</div>
     </template>
