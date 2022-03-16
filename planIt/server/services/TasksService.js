@@ -34,10 +34,10 @@ class TasksService {
             throw new Forbidden("You cannot edit this")
         }
 
-        if (updated.name != undefined) { task.name = updated.name }
-        if (updated.weight != undefined) { task.weight = updated.weight }
-        if (updated.sprintId != undefined) { task.sprintId = updated.sprintId }
-        if (updated.isComplete != undefined) { task.isComplete = updated.isComplete }
+        if (updated.name != undefined || null) { task.name = updated.name }
+        if (updated.weight != undefined || null) { task.weight = updated.weight }
+        if (updated.sprintId != undefined || null) { task.sprintId = updated.sprintId }
+        if (updated.isComplete != undefined || null) { task.isComplete = updated.isComplete }
 
         task.save()
         // task.populate('sprint').populate('creator')
