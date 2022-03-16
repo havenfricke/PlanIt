@@ -26,17 +26,27 @@
           <Modal id="myModal">
             <template #title>Create a Project</template>
             <template #body>
-              <form @submit="functionHere" class="row">
+              <form @submit.prevent="createProject" class="row">
                 <div class="p-2">
                   <input
+                    required
+                    v-model="editable.name"
                     class="col-12 p-2 rounded"
                     type="text"
                     placeholder="Project name"
                   />
+                  <input
+                    required
+                    v-model="editable.description"
+                    class="col-12 p-2 rounded"
+                    type="text"
+                    placeholder="Description"
+                  />
                 </div>
                 <div class="d-flex justify-content-end">
+                  <!--NOTE get redirect page working-->
                   <button
-                    @click="goTo('Projects')"
+                    @click="createProject"
                     type="button"
                     class="btn btn-success"
                     data-bs-dismiss="modal"
@@ -50,8 +60,12 @@
 
           <div class="row p-5">
             <!--v-for here-->
-            <div class="col-12 d-flex justify-content-center">
-              <ProjectBanner />
+            <div
+              v-for="p in projects"
+              :key="p.id"
+              class="col-12 d-flex justify-content-center"
+            >
+              <ProjectBanner :project="p" />
             </div>
             <!--v-for here-->
           </div>
@@ -62,23 +76,34 @@
 </template>
 
 <script>
-import { computed } from "@vue/reactivity"
+import { computed, reactive, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
 import { useRouter } from "vue-router"
+import { onMounted, watchEffect } from "@vue/runtime-core"
+import { projectsService } from "../services/ProjectsService"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 
 
 export default {
   name: 'Home',
   setup() {
+    watchEffect(async () => projectsService.getAllProjects())
+    const editable = ref({
+    });
     const router = useRouter();
     return {
-      user: computed(() => AppState.user),
-      goTo(page) {
-        router.push({
-          name: page,
-          params: { id: 123 }
-        });
+      editable,
+      async createProject() {
+        try {
+          await projectsService.createProject(editable.value)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
       },
+      user: computed(() => AppState.user),
+      projects: computed(() => AppState.projects),
     }
   }
 }

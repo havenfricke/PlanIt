@@ -13,7 +13,7 @@
               class="mdi rounded hoverable mdi-cog"
               title="edit project"
             ></i>
-            Project Name</b
+            {{ project.name }}</b
           >
           <button
             type="button"
@@ -115,10 +115,21 @@
 </template>
 
 <script>
+import { computed, onMounted } from "@vue/runtime-core"
+import { projectsService } from "../services/ProjectsService"
+import { useRoute } from "vue-router"
+import { AppState } from "../AppState"
 export default {
   name: 'Projects',
   setup() {
-    return {}
+    const route = useRoute();
+    onMounted(async () => {
+      await projectsService.getProjectById(route.params.id)
+    })
+    return {
+      project: computed(() => AppState.projects),
+      sprint: computed(() => AppState.sprints)
+    }
   }
 }
 </script>

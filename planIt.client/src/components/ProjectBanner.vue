@@ -4,22 +4,29 @@
     type="button"
     class="p-2 hoverable fs-5 col-8 text-center btn btn-primary rounded"
   >
-    Project Name
+    {{ project.name }}
   </p>
 </template>
 
 <script>
 import { useRouter } from "vue-router";
+
 export default {
-  setup() {
+  props: {
+    project: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
     const router = useRouter();
     return {
       goTo(page) {
         router.push({
           name: page,
-          params: { id: 123 },
+          params: { id: props.project.id },
         });
-      },
+      }
     }
   }
 }
