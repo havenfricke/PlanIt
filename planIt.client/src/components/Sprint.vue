@@ -16,7 +16,7 @@
           {{ sprint.name }}
           <b
             ><i class="mdi mdi-anvil text-end col-2 text-align-bottom">
-              {{ totalWeight }}</i
+              {{ totalTaskWeight }}</i
             ></b
           >
         </h4>
@@ -134,20 +134,14 @@ export default {
         }
       },
       theseTasks: computed(() => AppState.tasks.filter(t => t.sprintId == props.sprint.id)),
-
-      // FIXME GET THIS TO WORK
       totalTaskWeight: computed(() => {
         let tasksToWeigh = AppState.tasks.filter(t => t.sprintId == props.sprint.id)
         let totalWeight = 0
         for (let i = 0; i < tasksToWeigh.length; i++) {
-          tasksToWeigh[i].weight += totalWeight
+          totalWeight += tasksToWeigh[i].weight
           logger.log(tasksToWeigh[i].weight)
         }
         return totalWeight
-
-
-
-
 
       })
 
