@@ -131,14 +131,15 @@ export default {
           }
         } catch (error) {
           logger.error(error)
+          Pop.toast(error.message)
         }
       },
       async editTask() {
         try {
-
           await tasksService.editTask(route.params.id, props.task.id, editable.value)
         } catch (error) {
           logger.error(error)
+          Pop.toast(error.message)
         }
       },
 

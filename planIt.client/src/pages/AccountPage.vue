@@ -42,6 +42,7 @@ import { computed, ref } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { accountService } from '../services/AccountService'
+import Pop from '../utils/Pop'
 export default {
   name: 'Account',
   setup() {
@@ -53,6 +54,7 @@ export default {
           await accountService.editAccount(editable.value)
         } catch (error) {
           logger.error(error)
+          Pop.toast(error.message)
         }
       },
       account: computed(() => AppState.account)
