@@ -126,6 +126,7 @@ import { AppState } from "../AppState"
 import { sprintsService } from "../services/SprintsService"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
+import { router } from '../router'
 
 export default {
   name: 'Projects',
@@ -162,7 +163,7 @@ export default {
         try {
           if (await Pop.confirm()) {
             await projectsService.deleteProject(route.params.id)
-            // TODO MAKE THIS TAKE YOU HOME
+            router.push({ name: "Home", path: "/" })
           }
         } catch (error) {
           logger.error(error)

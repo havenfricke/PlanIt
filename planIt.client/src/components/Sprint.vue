@@ -106,6 +106,7 @@ export default {
         await tasksService.getTasks(route.params.id)
       } catch (error) {
         logger.log(error)
+        Pop.toast(error.message)
       }
     });
     return {
@@ -116,6 +117,7 @@ export default {
           await tasksService.createTask(route.params.id, editable.value)
         } catch (error) {
           logger.error(error)
+          Pop.toast(error.message)
         }
       },
 
@@ -126,7 +128,7 @@ export default {
           }
         } catch (error) {
           logger.log(error)
-
+          Pop.toast(error.message)
         }
       },
       tasks: computed(() => AppState.tasks),
