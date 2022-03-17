@@ -21,7 +21,7 @@
     <i class="mdi mdi-anvil col-2 text-align"> {{ task.weight }}</i>
     <i
       data-bs-toggle="modal"
-      data-bs-target="#notesModal"
+      data-bs-target="notesModal"
       title="view task notes"
       class="col-1 hoverable text-end mdi mdi-text"
     ></i>
