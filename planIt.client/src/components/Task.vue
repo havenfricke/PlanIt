@@ -10,7 +10,6 @@
     "
   >
     <div class="col-6 p-3">
-      <!--TODO checkbox-->
       <input
         v-model="editable.isComplete"
         @change="editTask"
