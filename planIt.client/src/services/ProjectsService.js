@@ -22,6 +22,7 @@ class ProjectsService {
     const res = await api.post('/api/projects', body)
     logger.log('project created', res.data)
     AppState.projects = [...AppState.projects, res.data]
+    return res.data
   }
 
   async deleteProject(id) {

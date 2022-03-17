@@ -96,7 +96,8 @@ export default {
       editable,
       async createProject() {
         try {
-          await projectsService.createProject(editable.value)
+          const project = await projectsService.createProject(editable.value)
+          router.push({ name: "Projects", params: { id: project.id } })
 
         } catch (error) {
           logger.error(error)
