@@ -4,10 +4,11 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 
 
 class ProjectsService {
-    async getProjects(query = {}) {
-        const projects = dbContext.Projects.find(query).populate('creator')
+    async getProjects(userId) {
+        const projects = dbContext.Projects.find({ creatorId: userId }).populate('creator')
         return projects
     }
+
     async getProjectById(id) {
         const project = await dbContext.Projects.findById(id).populate('creator')
         if (!project) {
