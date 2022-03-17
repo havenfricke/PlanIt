@@ -1,5 +1,5 @@
 <template>
-  <p class="dropdown-item" href="#">{{ project }}</p>
+  <p class="dropdown-item" href="#">{{ project.name }}</p>
 </template>
 
 <script>

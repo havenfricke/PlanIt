@@ -137,7 +137,7 @@
           <div class="offcanvas-body">
             <div class="dropdown mt-3">
               <ul>
-                <li v-for="p in projects" :key="p.id">
+                <li v-for="p in otherProjects" :key="p.id">
                   <ProjectList :project="p" />
                 </li>
               </ul>
