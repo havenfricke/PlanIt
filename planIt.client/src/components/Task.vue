@@ -11,7 +11,12 @@
   >
     <div class="col-6 p-3">
       <!--TODO checkbox-->
-      <input v-model="editable.isComplete" @change="editTask" type="checkbox" />
+      <input
+        v-model="editable.isComplete"
+        @change="editTask"
+        :checked="task.isComplete"
+        type="checkbox"
+      />
       {{ task.name }}
     </div>
     <i class="mdi mdi-anvil col-2 text-align"> {{ task.weight }}</i>
