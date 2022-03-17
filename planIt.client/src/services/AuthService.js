@@ -28,7 +28,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   AppState.user = AuthService.user
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
-  await projectsService.getAllProjects()
+  // await projectsService.getAllProjects()
   // await sprintsService.getSprints()
 })
 

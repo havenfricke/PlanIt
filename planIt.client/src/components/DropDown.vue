@@ -14,6 +14,10 @@ export default {
     sprint: {
       type: Object,
       required: true
+    },
+    task: {
+      type: Object,
+      required: true
     }
   },
   setup() {
