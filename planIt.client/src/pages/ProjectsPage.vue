@@ -162,6 +162,7 @@ export default {
         try {
           if (await Pop.confirm()) {
             await projectsService.deleteProject(route.params.id)
+            // TODO MAKE THIS TAKE YOU HOME
           }
         } catch (error) {
           logger.error(error)
