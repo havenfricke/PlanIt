@@ -156,6 +156,12 @@ export default {
         logger.error(error)
         Pop.toast(error.message)
       }
+      try {
+        await projectsService.getAllOtherProjects()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message)
+      }
     })
 
     return {

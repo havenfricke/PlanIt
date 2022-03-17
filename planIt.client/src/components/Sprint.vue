@@ -15,7 +15,9 @@
         <h4 class="mx-3 col-8 text-light">
           {{ sprint.name }}
           <b
-            ><i class="mdi mdi-anvil text-end col-2 text-align-bottom"> 6</i></b
+            ><i class="mdi mdi-anvil text-end col-2 text-align-bottom">
+              Variable</i
+            ></b
           >
         </h4>
         <button
@@ -32,7 +34,7 @@
           ></i>
         </div>
         <p class="col-12 text-end mt-3 text-light">
-          <b>0/1 Tasks Completed </b>
+          <b></b>
         </p>
       </div>
       <!--v-for here-->
@@ -132,6 +134,7 @@ export default {
         }
       },
       tasks: computed(() => AppState.tasks),
+      // totalWeight: computed(() for)
     }
   }
 
