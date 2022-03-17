@@ -55,7 +55,10 @@
           </Modal>
           <div class="row d-flex justify-content-start">
             <div class="col-3 p-2">
-              <button class="rounded-circle btn-secondary">
+              <button
+                v-if="account.id == project.creatorId"
+                class="rounded-circle btn-secondary"
+              >
                 <i
                   @click="deleteProject"
                   title="delete project"
@@ -179,7 +182,8 @@ export default {
         }
       },
       project: computed(() => AppState.projects),
-      sprints: computed(() => AppState.sprints)
+      sprints: computed(() => AppState.sprints),
+      account: computed(() => AppState.account)
     }
   }
 }
