@@ -14,7 +14,9 @@
       >
         <h4 class="mx-3 col-8 text-light">
           {{ sprint.name }}
-          <b><i class="mdi mdi-anvil text-end col-2 text-align"> 6</i></b>
+          <b
+            ><i class="mdi mdi-anvil text-end col-2 text-align-bottom"> 6</i></b
+          >
         </h4>
         <button
           data-bs-toggle="modal"
