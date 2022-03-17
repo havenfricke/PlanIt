@@ -1,6 +1,6 @@
 <template>
   <div class="row border shadow d-flex justify-content-end p-3 me-3">
-    <p class="col-12 text-wrap">
+    <p class="col-12" style="word-wrap: break-word">
       {{ note.body }}
     </p>
     <i
