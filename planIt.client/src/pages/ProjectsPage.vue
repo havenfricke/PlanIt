@@ -165,6 +165,7 @@ export default {
             await projectsService.deleteProject(route.params.id)
             router.push({ name: "Home", path: "/" })
           }
+
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message)

@@ -97,6 +97,7 @@ export default {
       async createProject() {
         try {
           await projectsService.createProject(editable.value)
+
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message)

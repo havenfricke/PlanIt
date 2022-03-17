@@ -85,20 +85,30 @@
       <div>{{ task.name }}</div>
     </template>
     <template #body>
-      <ul>
-        <!--v-for here-->
-        <li>
+      <div
+        class="p-2"
+        style="
+          height: 50vh;
+          width: auto;
+          border: 1px solid #ccc;
+          overflow: auto;
+        "
+      >
+        <ul>
+          <!--v-for here-->
           <Note />
-        </li>
-        <!--v-for here-->
-      </ul>
-      <form>
+          <!--v-for here-->
+        </ul>
+      </div>
+      <form @sumbit.prevent="createNote">
         <div class="row p-3">
           Add a Note:
-          <input class="col-12" type="text" />
+          <input v-model="editable.body" class="col-12" type="text" />
         </div>
         <div class="row d-flex justify-content-end p-2">
-          <button class="col-3 btn btn-success hoverable">Add</button>
+          <button @click="createNote" class="col-3 btn btn-success hoverable">
+            Add
+          </button>
         </div>
       </form>
     </template>
@@ -112,6 +122,7 @@ import { tasksService } from "../services/TasksService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { AppState } from "../AppState";
+import { notesService } from "../services/NotesService";
 export default {
   props: {
     task: {
@@ -141,6 +152,14 @@ export default {
       async editTask() {
         try {
           await tasksService.editTask(route.params.id, props.task.id, editable.value)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
+      },
+      async createNote() {
+        try {
+          await notesService.createNote(route.params.id, body)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message)
