@@ -4,6 +4,12 @@ import { logger } from "../utils/Logger"
 
 class NotesService {
 
+    async getNotes(projId) {
+        const res = await api.get('/api/projects/' + projId + '/notes')
+        AppState.notes = res.data
+        logger.log("Notes are...", AppState.notes)
+    }
+
     async createNote(projId, body) {
         const res = await api.post('/api/projects/' + projId + '/notes/', body)
         AppState.notes = [...AppState.notes, res.data]
