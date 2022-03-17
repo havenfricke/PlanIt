@@ -118,7 +118,7 @@
           </template>
         </Modal>
         <div
-          class="offcanvas offcanvas-start"
+          class="offcanvas bg-secondary offcanvas-start"
           tabindex="-1"
           id="offcanvasExample"
           aria-labelledby="offcanvasExampleLabel"
@@ -137,9 +137,9 @@
           <div class="offcanvas-body">
             <div class="dropdown mt-3">
               <ul>
-                <li v-for="p in projects" :key="p.id">
+                <div v-for="p in otherProjects" :key="p.id">
                   <ProjectList :project="p" />
-                </li>
+                </div>
               </ul>
             </div>
           </div>
@@ -165,30 +165,33 @@ export default {
   setup() {
     const editable = ref({});
     const route = useRoute();
-    onMounted(async () => {
-      try {
-        await projectsService.getProjectById(route.params.id)
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message)
-      }
-      try {
-        await sprintsService.getSprints(route.params.id)
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message)
-      }
-      try {
-        await notesService.getNotes(route.params.id)
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message)
-      }
-      try {
-        await projectsService.getAllOtherProjects()
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message)
+
+    watchEffect(async () => {
+      if (route.params.id) {
+        try {
+          await projectsService.getProjectById(route.params.id)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
+        try {
+          await sprintsService.getSprints(route.params.id)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
+        try {
+          await notesService.getNotes(route.params.id)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
+        try {
+          await projectsService.getAllOtherProjects()
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
       }
     })
 
@@ -215,6 +218,7 @@ export default {
           Pop.toast(error.message)
         }
       },
+
       projects: computed(() => AppState.projects),
       sprints: computed(() => AppState.sprints),
       account: computed(() => AppState.account),
