@@ -20,8 +20,10 @@ import { notesService } from "../services/NotesService"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
 import { AppState } from "../AppState"
+import { onMounted } from '@vue/runtime-core'
 export default {
   setup() {
+
     const route = useRoute()
     return {
       async deleteNote() {
