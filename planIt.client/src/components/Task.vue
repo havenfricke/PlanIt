@@ -58,11 +58,11 @@
 
         <div class="row p-3">
           <div class="col-12 p-2">
-            <span class="col-2 text-center fs-3">Move task </span>
+            <span class="col-2 text-center fs-3">Move task to</span>
             <div class="row">
               <!--v-for here-->
-              <ul>
-                <DropDown />
+              <ul v-for="s in sprints" :key="s.id">
+                <DropDown :sprint="s" />
               </ul>
               <!--v-for here-->
             </div>
@@ -143,6 +143,7 @@ export default {
       },
 
       tasks: computed(() => AppState.tasks),
+      sprints: computed(() => AppState.sprints)
     }
   }
 }
