@@ -127,6 +127,7 @@ import { sprintsService } from "../services/SprintsService"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
 import { router } from '../router'
+import { notesService } from '../services/NotesService'
 
 export default {
   name: 'Projects',
@@ -142,6 +143,12 @@ export default {
       }
       try {
         await sprintsService.getSprints(route.params.id)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message)
+      }
+      try {
+        await notesService.getNotes(route.params.id)
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message)
