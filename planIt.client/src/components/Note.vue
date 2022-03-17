@@ -31,9 +31,8 @@ export default {
     return {
       async deleteNote() {
         try {
-          await notesService.deleteNote(route.params.id, notes.id)
           if (await Pop.confirm()) {
-
+            await notesService.deleteNote(route.params.id, props.note.id)
           }
         } catch (error) {
           logger.error(error)

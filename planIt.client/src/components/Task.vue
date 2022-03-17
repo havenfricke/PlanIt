@@ -100,7 +100,7 @@
           overflow: auto;
         "
       >
-        <ul v-for="n in notes" :key="n.id">
+        <ul v-for="n in theseNotes" :key="n.id">
           <!--v-for here-->
           <Note :note="n" />
           <!--v-for here-->
@@ -178,7 +178,7 @@ export default {
           Pop.toast(error.message)
         }
       },
-      notes: computed(() => AppState.notes),
+      theseNotes: computed(() => AppState.notes.filter(n => n.taskId == props.task.id)),
       sprints: computed(() => AppState.sprints.filter(s => s.id != props.task.sprintId))
     }
   }
