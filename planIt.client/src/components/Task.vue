@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="(sprints.id = task.sprintId)"
     class="
       row
       d-flex
