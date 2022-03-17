@@ -4,6 +4,7 @@
       {{ note.body }}
     </p>
     <i
+      v-if="note.creatorId == account.id"
       @click="deleteNote"
       class="col-2 fs-5 mdi mdi-delete text-end hoverable mx-3"
     ></i>
@@ -11,7 +12,9 @@
 </template>
 
 <script>
+import { computed } from "@vue/reactivity"
 import { useRoute } from "vue-router"
+import { AppState } from "../AppState"
 import { notesService } from "../services/NotesService"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -36,7 +39,7 @@ export default {
           Pop.toast(error.message)
         }
       },
-      // notes: computed(() => AppState.notes)
+      account: computed(() => AppState.account)
     }
   }
 }

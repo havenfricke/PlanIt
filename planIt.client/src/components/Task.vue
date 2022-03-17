@@ -26,12 +26,14 @@
       class="col-1 hoverable text-end mdi mdi-text"
     ></i>
     <i
+      v-if="account.id == task.creatorId"
       data-bs-toggle="offcanvas"
       data-bs-target="#offCanvas"
       title="edit task"
       class="col-1 hoverable text-center mdi mdi-cog"
     ></i>
     <i
+      v-if="account.id == task.creatorId"
       @click="deleteTask"
       title="delete task"
       class="col-1 hoverable text-start mdi mdi-delete"
@@ -179,7 +181,8 @@ export default {
         }
       },
       theseNotes: computed(() => AppState.notes.filter(n => n.taskId == props.task.id)),
-      sprints: computed(() => AppState.sprints.filter(s => s.id != props.task.sprintId))
+      sprints: computed(() => AppState.sprints.filter(s => s.id != props.task.sprintId)),
+      account: computed(() => AppState.account),
     }
   }
 }

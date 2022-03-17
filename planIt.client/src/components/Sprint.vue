@@ -29,6 +29,7 @@
         </button>
         <div class="col-12 d-flex justify-content-end">
           <i
+            v-if="account.id == sprint.creatorId"
             @click="deleteSprint"
             class="mdi mx-3 hoverable mdi-delete text-light fs-2"
           ></i>
@@ -143,8 +144,8 @@ export default {
         }
         return totalWeight
 
-      })
-
+      }),
+      account: computed(() => AppState.account)
     }
   }
 
