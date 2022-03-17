@@ -211,7 +211,8 @@ export default {
       },
       projects: computed(() => AppState.projects),
       sprints: computed(() => AppState.sprints),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      otherProjects: computed(() => AppState.otherProjects)
     }
   }
 }

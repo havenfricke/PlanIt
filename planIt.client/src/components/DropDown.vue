@@ -7,13 +7,18 @@
 <script>
 import { logger } from "../utils/Logger"
 import { tasksService } from '../services/TasksService'
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
+import { AppState } from '../AppState'
 export default {
   props: {
     sprint: {
       type: Object,
       required: true
     },
+    task: {
+      type: Object,
+      required: true
+    }
   },
   setup(props) {
     const editable = ref({
@@ -23,7 +28,8 @@ export default {
       editable,
       async moveTask() {
         logger.log("body is...", editable)
-        await tasksService.editTask(props.task.id, editable.value)
+        logger.log("task is...", props.task)
+        // await tasksService.editTask(props.task.id, editable.value)
       },
     }
   }

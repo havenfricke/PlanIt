@@ -29,9 +29,7 @@ class TasksService {
       !body.isComplete
     }
     const res = await api.put('/api/projects/' + projId + '/tasks/' + taskId, body)
-    // const editIndex = AppState.tasks.findIndex(t => t.id == taskId)
-    // logger.log("index is...", editIndex)
-    // AppState.tasks = AppState.tasks.splice(editIndex, 1)
+
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
     AppState.tasks.push(res.data)
     logger.log("task edited", res.data)
