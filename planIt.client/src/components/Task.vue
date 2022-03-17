@@ -129,10 +129,6 @@ export default {
       type: Object,
       required: true
     },
-    sprint: {
-      type: Object,
-      required: true
-    }
   },
   setup(props) {
     const editable = ref({
