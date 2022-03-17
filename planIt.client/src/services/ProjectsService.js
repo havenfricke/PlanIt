@@ -15,6 +15,7 @@ class ProjectsService {
     const res = await api.get('/api/projects', { params: query })
     logger.log('get all projects', res.data)
     AppState.otherProjects = res.data
+    AppState.otherProjects = AppState.otherProjects.filter(p => p.creatorId == AppState.account.id)
   }
 
   async getProjectById(id) {
