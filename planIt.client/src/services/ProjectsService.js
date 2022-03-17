@@ -20,6 +20,7 @@ class ProjectsService {
   async getProjectById(id) {
     const res = await api.get('/api/projects/' + id)
     logger.log("your project is...", res.data)
+    // FIXME Really bad code
     AppState.projects = res.data
   }
 
