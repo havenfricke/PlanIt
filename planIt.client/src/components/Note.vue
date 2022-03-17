@@ -1,10 +1,7 @@
 <template>
   <div class="row border shadow d-flex justify-content-end p-3 me-3">
     <p class="col-12">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque iusto
-      distinctio sequi culpa pariatur. Vero quo temporibus architecto saepe
-      eligendi fugit doloremque minus maiores consequuntur, vitae, quaerat
-      molestias voluptas quod.
+      {{ note.body }}
     </p>
     <i
       @click="deleteNote"
@@ -22,7 +19,13 @@ import Pop from "../utils/Pop"
 import { AppState } from "../AppState"
 import { onMounted } from '@vue/runtime-core'
 export default {
-  setup() {
+  props: {
+    note: {
+      type: Object,
+      required: true,
+    }
+  },
+  setup(props) {
 
     const route = useRoute()
     return {
@@ -37,7 +40,7 @@ export default {
           Pop.toast(error.message)
         }
       },
-      notes: computed(() => AppState.notes)
+      // notes: computed(() => AppState.notes)
     }
   }
 }

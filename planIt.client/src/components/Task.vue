@@ -94,9 +94,9 @@
           overflow: auto;
         "
       >
-        <ul>
+        <ul v-for="n in notes" :key="n.id">
           <!--v-for here-->
-          <Note />
+          <Note :note="n" />
           <!--v-for here-->
         </ul>
       </div>
@@ -129,13 +129,15 @@ export default {
       type: Object,
       required: true
     },
-    sprints: {
+    sprint: {
       type: Object,
       required: true
     }
   },
   setup(props) {
-    const editable = ref({});
+    const editable = ref({
+      taskId: props.task.id
+    });
     const route = useRoute();
     return {
       editable,
@@ -159,7 +161,7 @@ export default {
       },
       async createNote() {
         try {
-          await notesService.createNote(route.params.id, body)
+          await notesService.createNote(route.params.id, editable.value)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message)
@@ -167,7 +169,8 @@ export default {
       },
 
       tasks: computed(() => AppState.tasks),
-      sprints: computed(() => AppState.sprints)
+      sprints: computed(() => AppState.sprints),
+      notes: computed(() => AppState.notes)
     }
   }
 }
