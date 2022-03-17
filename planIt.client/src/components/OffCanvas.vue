@@ -22,9 +22,8 @@
 </template>
 
 <script>
-export default {
-
-}
+import { computed } from '@vue/reactivity'
+import { AppState } from '../AppState'
 </script>
 
 <style>

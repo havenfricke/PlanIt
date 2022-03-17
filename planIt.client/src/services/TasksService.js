@@ -25,7 +25,6 @@ class TasksService {
 
   async editTask(projId, taskId, body) {
     logger.log("body is...", body)
-    logger.log("isComplete is...", body.isComplete)
     if (body.isComplete != undefined) {
       !body.isComplete
     }

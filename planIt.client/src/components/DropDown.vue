@@ -1,31 +1,29 @@
 <template>
-  <button @click="functionHere" class="col-12 hoverable p-2 rounded bg-primary">
+  <button @click="moveTask" class="col-12 hoverable p-2 rounded bg-primary">
     {{ sprint.name }}
   </button>
 </template>
 
 <script>
-import { computed } from "@vue/reactivity"
-import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
-import Pop from "../utils/Pop"
+import { tasksService } from '../services/TasksService'
+import { ref } from '@vue/reactivity'
 export default {
   props: {
     sprint: {
       type: Object,
       required: true
     },
-    task: {
-      type: Object,
-      required: true
-    }
   },
-  setup() {
+  setup(props) {
+    const editable = ref({
+      sprintId: props.sprint.id
+    })
     return {
-      functionHere() {
-        if (Pop.confirm('Are you sure you want to move this task?', 'This task will be moved to a different sprint', '', 'Move Task')) {
-          logger.log('button working')
-        }
+      editable,
+      async moveTask() {
+        logger.log("body is...", editable)
+        await tasksService.editTask(props.task.id, editable.value)
       },
     }
   }
