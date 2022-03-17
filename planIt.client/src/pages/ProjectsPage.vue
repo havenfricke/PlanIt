@@ -18,8 +18,8 @@
           >
           <button
             type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offCanvas"
+            data-bs-toggle="modal"
+            data-bs-target="#sprintModal"
             class="col-2 hoverable btn btn-success"
           >
             + Sprint
@@ -29,7 +29,7 @@
             <Sprint :sprint="s" />
           </div>
           <!--v-for here-->
-          <Modal id="myModal">
+          <Modal id="sprintModal">
             <template #title>Create Sprint</template>
             <template #body>
               <form @submit.prevent="createSprint" class="row">
