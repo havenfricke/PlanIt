@@ -58,12 +58,12 @@
 
         <div class="row p-3">
           <div class="col-12 p-2">
-            <span class="col-2">Move task to: </span>
+            <span class="col-2 text-center fs-3">Move task </span>
             <div class="row">
               <!--v-for here-->
-              <select class="col-12 fs-5 rounded">
+              <ul>
                 <DropDown />
-              </select>
+              </ul>
               <!--v-for here-->
             </div>
           </div>
@@ -113,6 +113,10 @@ export default {
     task: {
       type: Object,
       required: true
+    },
+    sprints: {
+      type: Object,
+      required: true
     }
   },
   setup(props) {
@@ -137,7 +141,8 @@ export default {
           logger.error(error)
         }
       },
-      tasks: computed(() => AppState.tasks)
+
+      tasks: computed(() => AppState.tasks),
     }
   }
 }
