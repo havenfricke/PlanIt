@@ -54,26 +54,26 @@
             type="number"
             placeholder="1"
           />
-        </div>
-
-        <div class="row p-3">
-          <div class="col-12 p-2">
-            <span class="col-2 text-center fs-3">Move task to</span>
-            <div class="row">
-              <!--v-for here-->
-              <ul v-for="s in sprints" :key="s.id">
-                <DropDown :sprint="s" />
-              </ul>
-              <!--v-for here-->
-            </div>
+          <div class="row d-flex justify-content-end mt-3">
+            <button @click="editTask" class="col-4 rounded btn-primary">
+              Save
+            </button>
           </div>
         </div>
-        <div class="row d-flex justify-content-end p-3">
-          <button @click="editTask" class="col-4 rounded btn-primary">
-            Save
-          </button>
-        </div>
       </form>
+
+      <div class="row p-3">
+        <div class="col-12 p-2">
+          <span class="col-2 text-center fs-3">Move task to</span>
+          <div class="row">
+            <!--v-for here-->
+            <ul v-for="s in sprints" :key="s.id">
+              <DropDown :sprint="s" />
+            </ul>
+            <!--v-for here-->
+          </div>
+        </div>
+      </div>
     </template>
   </OffCanvas>
   <Modal id="notesModal">

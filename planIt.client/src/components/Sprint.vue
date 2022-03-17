@@ -68,7 +68,6 @@
               @click="createTask(sprint.id)"
               type="button"
               class="btn btn-success"
-              data-bs-dismiss="modal"
             >
               Save Changes
             </button>
