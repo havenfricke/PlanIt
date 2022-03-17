@@ -2,23 +2,24 @@
   <div class="container-fluid">
     <div class="row p-5 mx-2">
       <div class="col-12">
+        <div class="row mb-3">
+          <i
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample"
+            title="Change project"
+            class="col-1 fs-1 text-primary mdi mdi-application hoverable"
+          ></i>
+        </div>
         <div
           class="bg-light row d-flex justify-content-around p-5 shadow rounded"
         >
-          <b class="fs-3 border-bottom border-primary text-primary col-8"
-            ><i
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#settingsModal"
-              class="mdi rounded hoverable mdi-cog"
-              title="edit project"
-            ></i>
-            {{ project.name }}</b
+          <b class="fs-3 border-bottom border-primary text-primary col-8">
+            {{ projects.name }}</b
           >
           <button
             type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#myModal"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offCanvas"
             class="col-2 hoverable btn btn-success"
           >
             + Sprint
@@ -56,7 +57,7 @@
           <div class="row d-flex justify-content-start">
             <div class="col-3 p-2">
               <button
-                v-if="account.id == project.creatorId"
+                v-if="account.id == projects.creatorId"
                 class="rounded-circle btn-secondary"
               >
                 <i
@@ -116,6 +117,33 @@
             </form>
           </template>
         </Modal>
+        <div
+          class="offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasExample"
+          aria-labelledby="offcanvasExampleLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+              Change Project
+            </h5>
+            <button
+              type="button"
+              class="btn-close text-reset"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="dropdown mt-3">
+              <ul>
+                <li v-for="p in projects" :key="p.id">
+                  <ProjectList :project="p" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -181,7 +209,7 @@ export default {
           Pop.toast(error.message)
         }
       },
-      project: computed(() => AppState.projects),
+      projects: computed(() => AppState.projects),
       sprints: computed(() => AppState.sprints),
       account: computed(() => AppState.account)
     }
