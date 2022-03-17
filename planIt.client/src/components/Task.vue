@@ -72,7 +72,13 @@
           <div class="row">
             <!--v-for here-->
             <ul v-for="s in sprints" :key="s.id">
-              <DropDown :sprint="s" />
+              <button
+                :sprint="s"
+                @click="moveTask(s.id)"
+                class="col-12 hoverable p-2 rounded bg-primary"
+              >
+                {{ s.name }}
+              </button>
             </ul>
             <!--v-for here-->
           </div>
@@ -155,6 +161,15 @@ export default {
           Pop.toast(error.message)
         }
       },
+      async moveTask(sprintId) {
+        try {
+          editable.value.sprintId = sprintId
+          await tasksService.editTask(route.params.id, props.task.id, editable.value)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
+      },
       async createNote() {
         try {
           await notesService.createNote(route.params.id, editable.value)
@@ -163,10 +178,8 @@ export default {
           Pop.toast(error.message)
         }
       },
-
-      tasks: computed(() => AppState.tasks),
-      sprints: computed(() => AppState.sprints),
-      notes: computed(() => AppState.notes)
+      notes: computed(() => AppState.notes),
+      sprints: computed(() => AppState.sprints.filter(s => s.id != props.task.sprintId))
     }
   }
 }
