@@ -21,14 +21,14 @@
     <i class="mdi mdi-anvil col-2 text-align"> {{ task.weight }}</i>
     <i
       data-bs-toggle="modal"
-      data-bs-target="notesModal"
+      :data-bs-target="'#notesModal' + task.id"
       title="view task notes"
       class="col-1 hoverable text-end mdi mdi-text"
     ></i>
     <i
       v-if="account.id == task.creatorId"
       data-bs-toggle="offcanvas"
-      data-bs-target="#offCanvas"
+      :data-bs-target="'#offCanvas' + task.id"
       title="edit task"
       class="col-1 hoverable text-center mdi mdi-cog"
     ></i>
@@ -39,7 +39,7 @@
       class="col-1 hoverable text-start mdi mdi-delete"
     ></i>
   </div>
-  <OffCanvas>
+  <OffCanvas :id="'offCanvas' + task.id">
     <template #title>
       <h1 class="row">Edit Task</h1>
     </template>
@@ -88,7 +88,7 @@
       </div>
     </template>
   </OffCanvas>
-  <Modal id="notesModal">
+  <Modal :id="'notesModal' + task.id">
     <template #title>
       <div>{{ task.name }}</div>
     </template>

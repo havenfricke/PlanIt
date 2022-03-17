@@ -22,7 +22,7 @@
         </h4>
         <button
           data-bs-toggle="modal"
-          data-bs-target="#taskModal"
+          :data-bs-target="'#taskModal' + sprint.id"
           class="col-2 btn hoverable btn-secondary"
         >
           + Task
@@ -44,7 +44,7 @@
       </div>
       <!--v-for here-->
     </div>
-    <Modal id="taskModal">
+    <Modal :id="'taskModal' + sprint.id">
       <template #title>Add a task</template>
 
       <template #body>
