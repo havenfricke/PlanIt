@@ -57,6 +57,7 @@
             <div class="col-3 p-2">
               <button class="rounded-circle btn-secondary">
                 <i
+                  @click="deleteProject"
                   title="delete project"
                   class="mdi fs-5 col-2 hoverable text-end mdi-delete"
                 >
@@ -88,6 +89,7 @@
             </form>
           </template>
         </Modal>
+        <!-- TODO CHANGE THIS TO DELETE PROJECT? -->
         <Modal id="settingsModal">
           <template #title>Edit Project</template>
           <template #body>
@@ -155,6 +157,16 @@ export default {
           Pop.toast(error.message)
         }
 
+      },
+      async deleteProject() {
+        try {
+          if (await Pop.confirm()) {
+            await projectsService.deleteProject(route.params.id)
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
       },
       project: computed(() => AppState.projects),
       sprints: computed(() => AppState.sprints)
