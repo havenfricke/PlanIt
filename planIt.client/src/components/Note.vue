@@ -1,6 +1,6 @@
 <template>
   <div class="row border shadow d-flex justify-content-end p-3 me-3">
-    <p class="col-12">
+    <p class="col-12 text-wrap">
       {{ note.body }}
     </p>
     <i
