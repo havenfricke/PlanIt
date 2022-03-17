@@ -3,6 +3,8 @@
     <p class="col-12" style="word-wrap: break-word">
       {{ note.body }}
     </p>
+    <p>-{{ note.creator.name }}</p>
+    <img class="img-fluid" :src="note.creator.picture" alt="No_picture" />
     <i
       v-if="note.creatorId == account.id"
       @click="deleteNote"
