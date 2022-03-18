@@ -135,6 +135,9 @@ export default {
         }
       },
       theseTasks: computed(() => AppState.tasks.filter(t => t.sprintId == props.sprint.id)),
+
+
+
       totalTaskWeight: computed(() => {
         let tasksToWeigh = AppState.tasks.filter(t => t.sprintId == props.sprint.id)
         let totalWeight = 0
