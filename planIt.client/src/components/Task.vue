@@ -108,7 +108,7 @@
           <!--v-for here-->
         </ul>
       </div>
-      <form @sumbit.prevent="createNote">
+      <form @submit.prevent="createNote">
         <div class="row p-3">
           Add a Note:
           <input v-model="editable.body" class="col-12" type="text" />
