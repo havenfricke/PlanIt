@@ -198,4 +198,9 @@ export default {
   transform: scale(0.98);
   transition: 50ms ease-in-out;
 }
+
+ul,
+button {
+  font-size: 16px;
+}
 </style>

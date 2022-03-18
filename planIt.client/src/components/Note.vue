@@ -1,10 +1,17 @@
 <template>
   <div class="row border shadow d-flex justify-content-end p-3 me-3">
+    <div>
+      <img
+        class="img-fluid rounded-circle p-1"
+        style="width: auto; height: 5vh"
+        :src="note.creator.picture"
+        alt="No_picture"
+      />
+      <p>{{ note.creator.name }}</p>
+    </div>
     <p class="col-12" style="word-wrap: break-word">
       {{ note.body }}
     </p>
-    <p>-{{ note.creator.name }}</p>
-    <img class="img-fluid" :src="note.creator.picture" alt="No_picture" />
     <i
       v-if="note.creatorId == account.id"
       @click="deleteNote"
@@ -57,5 +64,8 @@ export default {
 .hoverable:active {
   transform: scale(0.98);
   transition: 50ms ease-in-out;
+}
+p {
+  font-size: 16px;
 }
 </style>
