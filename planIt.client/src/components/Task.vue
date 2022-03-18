@@ -114,9 +114,7 @@
           <input v-model="editable.body" class="col-12" type="text" />
         </div>
         <div class="row d-flex justify-content-end p-2">
-          <button @click="createNote" class="col-3 btn btn-success hoverable">
-            Add
-          </button>
+          <button class="col-3 btn btn-success hoverable">Add</button>
         </div>
       </form>
     </template>
