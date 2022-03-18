@@ -76,4 +76,10 @@ img {
   transform: scale(0.98);
   transition: 50ms ease-in-out;
 }
+p,
+input,
+button,
+h1 {
+  font-size: 16px;
+}
 </style>

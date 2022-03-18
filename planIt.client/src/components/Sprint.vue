@@ -31,7 +31,8 @@
           <i
             v-if="account.id == sprint.creatorId"
             @click="deleteSprint"
-            class="mdi mx-3 hoverable mdi-delete text-light fs-2"
+            class="mdi mx-3 mt-3 hoverable mdi-delete text-light fs-2"
+            title="delete sprint"
           ></i>
         </div>
         <p class="col-12 text-end mt-3 text-light">
